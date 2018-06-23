@@ -12,7 +12,7 @@ namespace muratkale.Data.EFModelContext
         [Column("StuID")]
         [StringLength(11)]
         public string StuId { get; set; }
-
+         
         [ForeignKey("StuId")]
         [InverseProperty("AvoidMaslak")]
         public Student Stu { get; set; }
