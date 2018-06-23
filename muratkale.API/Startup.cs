@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using muratkale.Auth.Bearer;
-using muratkale.Data.EFModelContext;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace muratkale.API
@@ -51,25 +50,25 @@ namespace muratkale.API
                 option.InstanceName = redisInstanceName;
             });
 
-            services.AddDbContext<EFContext>(options =>
-            {
-                try
-                {
-                    options.UseSqlServer(_EFDataContext);
-                    options.ConfigureWarnings(wb =>
-                    {
-                        //By default, in this application, we don't want to have client evaluations
-                        wb.Log(RelationalEventId.QueryClientEvaluationWarning);
-                    });
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-            );
-            //services.AddDbContext<MySqlContext>(o => o.UseMySql(_MySqlContext));
-            services.AddDbContext<EFContext>(options => options.UseInMemoryDatabase(_EFDataContext));
+            //services.AddDbContext<EFContext>(options =>
+            //{
+            //    try
+            //    {
+            //        options.UseSqlServer(_EFDataContext);
+            //        options.ConfigureWarnings(wb =>
+            //        {
+            //            //By default, in this application, we don't want to have client evaluations
+            //            wb.Log(RelationalEventId.QueryClientEvaluationWarning);
+            //        });
+            //    }
+            //    catch (Exception)
+            //    {
+            //        throw;
+            //    }
+            //}
+            //);
+            ////services.AddDbContext<MySqlContext>(o => o.UseMySql(_MySqlContext));
+            //services.AddDbContext<EFContext>(options => options.UseInMemoryDatabase(_EFDataContext));
             //services.AddTransient<IStickerRepository, StickerRepository>();
 
             #region Swagger
